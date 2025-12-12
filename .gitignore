@@ -1,0 +1,7 @@
+tiny-imagenet-200/
+cifar-data/
+data/
+cifar100-data/
+output/
+runs/
+tiny-imagenet-200.zip
