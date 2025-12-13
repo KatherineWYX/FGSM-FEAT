@@ -2,6 +2,6 @@ tiny-imagenet-200/
 cifar-data/
 data/
 cifar100-data/
-output/
-runs/
+output/**/*.pth
+runs/**/*.pth
 tiny-imagenet-200.zip
