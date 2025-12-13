@@ -1,0 +1,15 @@
+# FGSM-LAW 依赖
+# 核心依赖
+torch>=1.9.0
+torchvision>=0.10.0
+numpy>=1.19.0
+tqdm>=4.62.0
+PyYAML>=5.4.0
+
+# 可选依赖（用于AutoAttack评估）
+# git+https://github.com/fra31/auto-attack
+
+# 开发依赖
+# pytest>=6.0.0
+# black>=21.0
+# flake8>=3.9.0

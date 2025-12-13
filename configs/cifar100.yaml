@@ -1,0 +1,50 @@
+# CIFAR-100 配置
+# 继承 default.yaml 的大部分配置
+
+data:
+  dataset: "cifar100"
+  data_dir: "./data"
+  batch_size: 128
+  num_workers: 4
+
+model:
+  name: "ResNet18"
+  num_classes: 100
+  with_feature: true
+
+training:
+  epochs: 120
+  lr_max: 0.1
+  lr_min: 0.0
+  lr_schedule: "multistep"
+  momentum: 0.9
+  weight_decay: 5.0e-4
+  seed: 0
+
+adversarial:
+  epsilon: 8
+  alpha: 8
+  delta_init: "random"
+
+fgsm_law:
+  lamda: 12.0
+  lam_scale: 0.12
+  lam_max: 45.0
+  lam_start: 50
+  beta: 0.5
+  inner_gamma: 0.15
+  ema_value: 0.82
+  ema_alpha: 0.999
+  batch_m: 0.75
+
+augmentation:
+  label_smoothing_factor: 0.7
+  cutout:
+    enabled: true
+    n_holes: 1
+    length: 4
+
+output:
+  out_dir: "./output/cifar100"
+  save_freq: 10
+  log_freq: 1

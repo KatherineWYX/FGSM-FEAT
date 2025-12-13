@@ -1,0 +1,63 @@
+# FGSM-LAW 默认配置文件
+
+# 数据集配置
+data:
+  dataset: "cifar10"  # cifar10, cifar100, tiny_imagenet
+  data_dir: "./data"
+  batch_size: 128
+  num_workers: 4
+
+# 模型配置
+model:
+  name: "ResNet18"  # ResNet18, ResNet34, WideResNet, VGG19, PreActResNet18
+  num_classes: 10
+  with_feature: true  # 是否使用特征输出（用于Lipschitz正则化）
+
+# 训练配置
+training:
+  epochs: 120
+  lr_max: 0.1
+  lr_min: 0.0
+  lr_schedule: "multistep"  # cyclic, multistep
+  momentum: 0.9
+  weight_decay: 5.0e-4
+  seed: 0
+
+# 对抗训练配置
+adversarial:
+  epsilon: 8  # 扰动大小 (会除以255)
+  alpha: 8    # 步长 (会除以255)
+  delta_init: "random"  # zero, random, previous, normal
+
+# FGSM-LAW 核心配置
+fgsm_law:
+  # Lipschitz正则化
+  lamda: 12.0           # 初始正则化系数
+  lam_scale: 0.12       # 正则化系数缩放因子
+  lam_max: 45.0         # 正则化系数最大值
+  lam_start: 50         # 开始自适应调整的epoch
+  
+  # 标签松弛
+  beta: 0.5             # 动态标签松弛因子
+  inner_gamma: 0.15     # 最小内部标签松弛因子
+  
+  # 自动权重平均 (EMA)
+  ema_value: 0.82       # EMA更新阈值
+  ema_alpha: 0.999      # EMA衰减系数
+  
+  # 动量批次
+  batch_m: 0.75         # 动量更新系数
+
+# 数据增强
+augmentation:
+  label_smoothing_factor: 0.7
+  cutout:
+    enabled: true
+    n_holes: 1
+    length: 4
+
+# 输出配置
+output:
+  out_dir: "./output"
+  save_freq: 10         # 每多少个epoch保存一次
+  log_freq: 1           # 日志频率
